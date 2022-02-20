@@ -1,5 +1,4 @@
 #!/bin/bash
 
 cd /home/ubuntu
-echo "Deploying..."
-./deploy.sh
+./deploy.sh > /dev/null 2> /dev/null < /dev/null &
