@@ -1,8 +1,9 @@
 version: 0.0
 os: linux
 files:
-  - source: /
+  - source:  /
     destination: /home/ubuntu/node-koa-server/
+    overwrite: yes
 hooks:
   AfterInstall:
     - location: execute-deploy.sh
