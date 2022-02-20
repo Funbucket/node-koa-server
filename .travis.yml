@@ -1,8 +1,44 @@
 language: node_js
+
 node_js:
   - "10.14"
+
 before_install:
   - npm install -g yarn
-branches:
+
+branch:
   only:
     - master
+
+before_deploy:
+  - rm -rf node_modules
+  - zip -r node-koa-server
+  - mkdir -p deploy
+  - mv node-koa-server.zip deploy/node-koa-server.zip
+
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: node-koa-server-bucket
+    region: ap-northeast-2
+    skip_cleanup: true
+    local_dir: deploy
+    wait-until-deployed: true
+    on:
+      repo: Funbucket/node-koa-server
+      branch: master
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: node-koa-server-bucket
+    key: node-koa-server.zip
+    bundle_type: zip
+    application: node-koa-server
+    deployment_group: node-koa-server-group
+    region: ap-northeast-2
+    wait-until-deployed: true
+    on:
+      repo: Funbucket/node-koa-server
+      branch: master
+
