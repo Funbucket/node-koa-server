@@ -12,7 +12,7 @@ branch:
 
 before_deploy:
   - rm -rf node_modules
-  - zip -r node-koa-server
+  - zip -r node-koa-server *
   - mkdir -p deploy
   - mv node-koa-server.zip deploy/node-koa-server.zip
 
