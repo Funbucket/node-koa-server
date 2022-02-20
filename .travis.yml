@@ -28,17 +28,17 @@ deploy:
     on:
       repo: Funbucket/node-koa-server
       branch: master
-  - provider: codedeploy
-    access_key_id: $AWS_ACCESS_KEY_ID
-    secret_access_key: $AWS_SECRET_ACCESS_KEY
-    bucket: node-koa-server-bucket
-    key: node-koa-server.zip
-    bundle_type: zip
-    application: node-koa-server
-    deployment_group: node-koa-server-group
-    region: ap-northeast-2
-    wait-until-deployed: true
-    on:
-      repo: Funbucket/node-koa-server
-      branch: master
+  # - provider: codedeploy
+  #   access_key_id: $AWS_ACCESS_KEY_ID
+  #   secret_access_key: $AWS_SECRET_ACCESS_KEY
+  #   bucket: node-koa-server-bucket
+  #   key: node-koa-server.zip
+  #   bundle_type: zip
+  #   application: node-koa-server
+  #   deployment_group: node-koa-server-group
+  #   region: ap-northeast-2
+  #   wait-until-deployed: true
+  #   on:
+  #     repo: Funbucket/node-koa-server
+  #     branch: master
 
